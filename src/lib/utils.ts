@@ -1,12 +1,13 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { jwtDecode } from "jwt-decode";
+import { createAdmin } from "@/api";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export type TUser = {
+export type TAdmin = {
   name: string;
   email: string;
   sub: string;
@@ -14,7 +15,7 @@ export type TUser = {
 
 export const handleGoogleLogin = async (
   userCredential: string,
-  addUser: (user: TUser) => void
+  addAdmin: (admin: TAdmin) => void
 ) => {
   const decodedToken: { name: string; email: string; sub: string } =
     jwtDecode(userCredential);
@@ -25,5 +26,6 @@ export const handleGoogleLogin = async (
     sub: decodedToken.sub,
   };
 
-  addUser(user);
+  const admin = await createAdmin(user);
+  addAdmin(admin);
 };

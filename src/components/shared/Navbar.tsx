@@ -4,15 +4,15 @@ import { handleGoogleLogin } from "@/lib/utils";
 import { Button } from "../ui/button";
 
 const Navbar = () => {
-  const { userProfile, addUser, removeUser } = useAuthStore((state) => state);
+  const { addAdmin, admin, removeAdmin } = useAuthStore((state) => state);
   return (
     <nav className="fixed flex justify-between items-center w-full top-0 left-0 p-4 bg-black text-white">
       <p>Telegram Bot Admin</p>
-      {userProfile ? (
+      {admin ? (
         <Button
           onClick={() => {
             googleLogout();
-            removeUser();
+            removeAdmin();
           }}
         >
           Logout
@@ -20,7 +20,7 @@ const Navbar = () => {
       ) : (
         <GoogleLogin
           onSuccess={(res) =>
-            res.credential && handleGoogleLogin(res.credential, addUser)
+            res.credential && handleGoogleLogin(res.credential, addAdmin)
           }
           size="medium"
         />

@@ -1,19 +1,19 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { TUser } from "./utils";
+import { TAdmin } from "./utils";
 
 type TAuthStore = {
-  userProfile: TUser | null;
-  addUser: (user: TUser) => void;
-  removeUser: () => void;
+  admin: TAdmin | null;
+  addAdmin: (user: TAdmin) => void;
+  removeAdmin: () => void;
 };
 
 const useAuthStore = create<TAuthStore>()(
   persist(
     (set) => ({
-      userProfile: null,
-      addUser: (user: TUser) => set({ userProfile: user }),
-      removeUser: () => set({ userProfile: null }),
+      admin: null,
+      addAdmin: (user: TAdmin) => set({ admin: user }),
+      removeAdmin: () => set({ admin: null }),
     }),
     {
       name: "auth",
