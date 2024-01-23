@@ -6,7 +6,9 @@ const Home = () => {
   return (
     <div>
       {admin ? (
-        <Admin />
+        <div>
+          <Admin />
+        </div>
       ) : (
         <div className="min-h-screen flex justify-center items-center">
           <h1 className="my-4 text-xl font-bold">Login to Admin Panel</h1>
